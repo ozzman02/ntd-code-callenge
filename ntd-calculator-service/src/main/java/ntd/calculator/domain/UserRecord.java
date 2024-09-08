@@ -15,7 +15,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Entity
 @Table(name = "records")
-public class Record extends BaseEntity {
+public class UserRecord extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "operation_id")
@@ -42,8 +42,8 @@ public class Record extends BaseEntity {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        Record record = (Record) o;
-        return Objects.equals(operation, record.operation) && Objects.equals(user, record.user) && Objects.equals(amount, record.amount) && Objects.equals(userBalance, record.userBalance) && Objects.equals(operationValue, record.operationValue) && Objects.equals(operationResponse, record.operationResponse);
+        UserRecord userRecord = (UserRecord) o;
+        return Objects.equals(operation, userRecord.operation) && Objects.equals(user, userRecord.user) && Objects.equals(amount, userRecord.amount) && Objects.equals(userBalance, userRecord.userBalance) && Objects.equals(operationValue, userRecord.operationValue) && Objects.equals(operationResponse, userRecord.operationResponse);
     }
 
     @Override
