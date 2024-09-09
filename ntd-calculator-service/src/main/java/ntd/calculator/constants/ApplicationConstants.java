@@ -29,5 +29,8 @@ public class ApplicationConstants {
 
     public static final String AUTH_URL = "/api/auth";
 
+    public static final String CALCULATOR_URL = "/api/calculate";
+
     public static final Long MAX_AGE = 3600L;
+
 }

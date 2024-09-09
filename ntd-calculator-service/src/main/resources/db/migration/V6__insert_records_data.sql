@@ -36,4 +36,4 @@ INSERT INTO records (
     operation_value,
     operation_response,
     created_date
-) VALUES(4, 3, 15, 4969, '1500/0', null, now());
+) VALUES(4, 3, 0, 4984, '1500/0', null, now());
