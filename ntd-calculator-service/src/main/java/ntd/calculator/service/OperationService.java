@@ -7,6 +7,6 @@ public interface OperationService {
 
     Operation findByOperationType(OperationType operationType);
 
-    Operation getValidOperationData(String mathematicalExpression, boolean special);
+    Operation getValidOperationData(String mathematicalExpression);
 
 }

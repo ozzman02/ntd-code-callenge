@@ -19,15 +19,15 @@ public class OperationServiceImpl implements OperationService {
     }
 
     @Override
-    public Operation getValidOperationData(String mathematicalExpression, boolean special) {
+    public Operation getValidOperationData(String mathematicalExpression) {
         OperationType operationType = null;
         int mathematicalExpressionLength = mathematicalExpression.trim().length();
-        if (special) {
-            operationType = OperationType.SPECIAL;
-        } else if (mathematicalExpressionLength > 1 && mathematicalExpressionLength < 20) {
+        if (mathematicalExpressionLength > 1 && mathematicalExpressionLength < 20) {
             operationType = OperationType.STANDARD;
-        } else if (mathematicalExpressionLength > 20 && mathematicalExpressionLength <= 3000) {
+        } else if (mathematicalExpressionLength > 20 && mathematicalExpressionLength < 100) {
             operationType = OperationType.COMPLEX;
+        } else {
+            operationType = OperationType.SPECIAL;
         }
         return operationRepository.findByOperationType(operationType);
     }

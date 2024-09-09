@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 
 import static ntd.calculator.mapper.UserRecordMapper.mapToUserRecordDto;
-import static ntd.calculator.util.CalculatorServiceUtil.isValidMathematicalExpression;
+import static ntd.calculator.util.ApplicationUtil.isValidMathematicalExpression;
 
 @Service
 @RequiredArgsConstructor
@@ -46,11 +46,10 @@ public class CalculatorServiceImpl implements CalculatorService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String mathematicalExpression = mathematicalExpressionDto.getMathematicalExpression().trim();
 
-        double result = 0;
-        boolean special = mathematicalExpressionDto.isSpecial();
+        Double result;
 
         User user = userService.findByUsername(authentication.getName());
-        Operation operation = operationService.getValidOperationData(mathematicalExpression, special);
+        Operation operation = operationService.getValidOperationData(mathematicalExpression);
 
         log.info("User {} Balance is: {} - Operation Type is: {} - Operation Cost is: {}",
                 user.getUsername(), user.getBalance(), operation.getOperationType(), operation.getCost());
