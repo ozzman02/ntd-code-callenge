@@ -21,6 +21,18 @@ public class ApplicationConstants {
 
     public static final String ERRORS = "errors";
 
+    public static final String SUCCESS_RECORD_CREATED_LOG_MSG =
+            "Updated Balance is: {} - Success record will be created";
+
+    public static final String INVALID_MATHEMATICAL_EXPRESSION_LOG_MSG =
+            "Mathematical expression: {} is invalid. Invalid record will be created";
+
+    public static final String MATHEMATICAL_EXPRESSION_NOT_SUPPORTED_LOG_MSG =
+        "Mathematical expression: {} is not supported. Invalid record will be created";
+
+    public static final String INSUFFICIENT_BALANCE_LOG_MSG =
+            "Insufficient balance - Invalid record will be created";
+
     public static final String ALL = "*";
 
     public static final String CORS_CONFIG_PATTERN = "/**";

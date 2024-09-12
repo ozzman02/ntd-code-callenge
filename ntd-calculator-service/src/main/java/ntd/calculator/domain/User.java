@@ -34,7 +34,8 @@ public class User extends BaseEntity {
         if (!super.equals(o)) return false;
 
         User user = (User) o;
-        return Objects.equals(username, user.username) && Objects.equals(password, user.password) && status == user.status && Objects.equals(balance, user.balance);
+        return Objects.equals(username, user.username) && Objects.equals(password, user.password) &&
+                status == user.status && Objects.equals(balance, user.balance);
     }
 
     @Override

@@ -10,7 +10,6 @@ import ntd.calculator.domain.User;
 import ntd.calculator.domain.UserRecord;
 import ntd.calculator.dto.MathematicalExpressionDto;
 import ntd.calculator.dto.UserRecordDto;
-import ntd.calculator.repository.UserRecordRepository;
 import ntd.calculator.service.CalculatorService;
 import ntd.calculator.service.OperationService;
 import ntd.calculator.service.UserRecordService;
@@ -21,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+import static ntd.calculator.constants.ApplicationConstants.*;
 import static ntd.calculator.mapper.UserRecordMapper.mapToUserRecordDto;
 import static ntd.calculator.util.ApplicationUtil.isValidMathematicalExpression;
 
@@ -28,7 +28,6 @@ import static ntd.calculator.util.ApplicationUtil.isValidMathematicalExpression;
 @RequiredArgsConstructor
 @Slf4j
 public class CalculatorServiceImpl implements CalculatorService {
-    private final UserRecordRepository userRecordRepository;
 
     private final OperationService operationService;
 
@@ -63,22 +62,19 @@ public class CalculatorServiceImpl implements CalculatorService {
                     log.info("Calculation result is: {} ", result);
                     user.setBalance(user.getBalance().subtract(operation.getCost()));
                     User updatedUser = userService.save(user);
-                    log.info("Updated Balance is: {} - Success record will be created",
-                            updatedUser.getBalance());
-                    userRecord = createUserRecord(operation, user, operation.getCost(),
-                            updatedUser.getBalance(), mathematicalExpression, result);
+                    userRecord = createUserRecord(SUCCESS_RECORD_CREATED_LOG_MSG, operation, updatedUser,
+                            operation.getCost(), updatedUser.getBalance(), mathematicalExpression, result);
+
                 } catch (Exception e) {
-                    log.error("Mathematical expression: {} is invalid. Invalid record will be created",
-                            mathematicalExpression);
-                    operation = operationService.findByOperationType(OperationType.INVALID);
-                    userRecord = createUserRecord(operation, user, operation.getCost(),
-                            user.getBalance(), mathematicalExpression, null);
+                    userRecord = createUserRecord(INVALID_MATHEMATICAL_EXPRESSION_LOG_MSG, null, user,
+                            operation.getCost(), user.getBalance(), mathematicalExpression, null);
                 }
+            } else {
+                userRecord = createUserRecord(MATHEMATICAL_EXPRESSION_NOT_SUPPORTED_LOG_MSG, null, user,
+                        operation.getCost(), user.getBalance(), mathematicalExpression, null);
             }
         } else {
-            log.error("Insufficient balance - Invalid record will be created");
-            operation = operationService.findByOperationType(OperationType.INVALID);
-            userRecord = createUserRecord(operation, user, operation.getCost(),
+            userRecord = createUserRecord(INSUFFICIENT_BALANCE_LOG_MSG, null, user, operation.getCost(),
                     user.getBalance(), mathematicalExpression, null);
 
         }
@@ -87,16 +83,24 @@ public class CalculatorServiceImpl implements CalculatorService {
         return mapToUserRecordDto(savedUserRecord);
     }
 
-    private UserRecord createUserRecord(Operation operation,
+    private UserRecord createUserRecord(String logMessage,
+                                        Operation operation,
                                         User user,
                                         BigDecimal amount,
                                         BigDecimal userBalance,
                                         String operationValue,
                                         Double operationResponse) {
+        if (operation == null) {
+            operation = operationService.findByOperationType(OperationType.INVALID);
+            if (logMessage.contains("is invalid") || logMessage.contains("is not supported")) {
+                log.error(logMessage, operationValue);
+            } else if (logMessage.contains("Insufficient balance")) {
+                log.error(logMessage);
+            }
+        } else {
+            log.info(logMessage, userBalance);
+        }
         return new UserRecord(operation, user, amount, userBalance, operationValue, operationResponse);
     }
-
-
-
-
+    
 }
