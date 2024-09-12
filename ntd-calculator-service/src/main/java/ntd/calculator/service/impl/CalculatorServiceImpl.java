@@ -40,15 +40,12 @@ public class CalculatorServiceImpl implements CalculatorService {
 
         log.info("Processing {} expression ", mathematicalExpressionDto.getMathematicalExpression().trim());
 
-        UserRecord userRecord = new UserRecord();
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String mathematicalExpression = mathematicalExpressionDto.getMathematicalExpression().trim();
-
-        Double result;
-
         User user = userService.findByUsername(authentication.getName());
         Operation operation = operationService.getValidOperationData(mathematicalExpression);
+        Double result;
+        UserRecord userRecord;
 
         log.info("User {} Balance is: {} - Operation Type is: {} - Operation Cost is: {}",
                 user.getUsername(), user.getBalance(), operation.getOperationType(), operation.getCost());
