@@ -1,0 +1,3 @@
+INSERT INTO users (username, password, status, balance, created_date) VALUES ('oscar.santamaria@ntdsoftware.com', '$2a$15$Bx93D0xC.efWSgqWC3hQquz4w/Gllyj8nBPSJTPbCmLIjClM1kRd6', 'ACTIVE', 5000.00, now());
+INSERT INTO users (username, password, status, balance, created_date) VALUES ('karen.navarro@ntdsoftware.com', '$2a$15$mba47d9SuVYoKuNnnl8xbOobkWtFQ89dCvcUszEElNM4uuaaHdKCS', 'ACTIVE', 5000.00, now());
+INSERT INTO users (username, password, status, balance, created_date) VALUES ('nayla.corteguera@ntdsoftware.com', '$2a$15$VZKqDU0Y4k80RNVd81N3m.xkY40HLvjhKQVloDJjn7b.iea/Kuu5e', 'INACTIVE', 4969.00, now());
