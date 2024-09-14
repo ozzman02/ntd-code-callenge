@@ -21,4 +21,10 @@ public class ApplicationConstants {
 
     public static final Long MAX_AGE = 3600L;
 
+    public static final String USER_SERVICE_URL = "/api/user";
+
+    public static final String GET_BY_USERNAME = "/getUserByUsername/{username}";
+
+    public static final String GET_BY_USERNAME_AND_STATUS = "/getUserByUsername/{username}/{status}";
+
 }

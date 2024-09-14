@@ -1,11 +1,11 @@
 package com.ntd.dto;
 
-import com.ntd.enums.Role;
 import com.ntd.enums.UserStatus;
 import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 @Data
 @Builder
@@ -14,7 +14,6 @@ public class UserDto {
     private String username;
     private String password;
     private BigDecimal balance;
-    private UserStatus userStatus;
-    private Role role;
-
+    private UserStatus status;
+    private Timestamp createdDate;
 }
