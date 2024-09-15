@@ -126,17 +126,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.flywaydb</groupId>
-				<artifactId>flyway-maven-plugin</artifactId>
-				<version>10.16.0</version>
-				<configuration>
-					<cleanDisabled>false</cleanDisabled>
-					<url>jdbc:mysql://localhost:3306/calculatordb</url>
-					<user>calculatorAdmin</user>
-					<password>password</password>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 

@@ -17,23 +17,6 @@ public class ApplicationConstants {
     public static final String[] IGNORED_REQUEST_MATCHERS = { "/swagger-ui.html/**",
             "/swagger-resources/**", "/swagger-ui/**", "/v3/api-docs/**" };
 
-    public static final String USERNAME_EMAIL_VALIDATION_MSG =
-            "must be a valid email address";
-
-    public static final String USERNAME_NOT_EMPTY_VALIDATION_MSG =
-            "must not be empty";
-
-    public static final String USERNAME_SIZE_VALIDATION_MSG =
-            "must have a valid length between 1 and 255 characters";
-
-    public static final String PASSWORD_NOT_EMPTY_VALIDATION_MSG =
-            "must not be empty";
-
-    public static final String PASSWORD_SIZE_VALIDATION_MSG =
-            "must have a valid length between 1 and 255 characters";
-
-    public static final String USERNAME_NOT_FOUND_ERROR_MSG = "Username %s not found";
-
     public static final String ERRORS = "errors";
 
     public static final String SUCCESS_RECORD_CREATED_LOG_MSG =
@@ -54,13 +37,11 @@ public class ApplicationConstants {
 
     public static final String REACT_APP_ORIGIN = "http://localhost:3000";
 
-    public static final String AUTH_URL = "/api/auth";
+    public static final String CALCULATOR_URL = "/api/calculator";
 
-    public static final String CALCULATOR_URL = "/api/calculate";
+    public static final String GENERATOR_URL = "/generate";
 
-    public static final String GENERATOR_URL = "/api/generate";
-
-    public static final String USER_RECORDS_URL = "/api/records";
+    public static final String USER_RECORDS_URL = "/records/{id}/page/{page}";
 
     public static final String GET_RANDOM_NUMBERS_REQUEST =
             "https://www.random.org/integers/?num=15&min=1&max=1000&base=10&format=plain&col=1&rnd=new";
