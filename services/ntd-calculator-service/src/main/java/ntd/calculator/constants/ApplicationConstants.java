@@ -71,12 +71,4 @@ public class ApplicationConstants {
 
     public static final Integer PAGE_SIZE = 5;
 
-    public static final String USER_SERVICE = "ntd-user-service";
-
-    public static final String USER_SERVICE_URL = "/api/user";
-
-    public static final String GET_USER_BY_USERNAME = "/getUserByUsername/{username}";
-
-    public static final String GET_BY_USERNAME_AND_STATUS = "/getUserByUsername/{username}/{status}";
-
 }
