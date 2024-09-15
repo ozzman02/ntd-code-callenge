@@ -13,7 +13,7 @@ import java.util.Collection;
 @Builder
 public class CustomUserDetails implements UserDetails {
 
-    private String id;
+    private Long id;
 
     private String username;
 
