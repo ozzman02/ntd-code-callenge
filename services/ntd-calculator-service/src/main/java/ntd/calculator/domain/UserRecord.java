@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -15,7 +17,10 @@ import java.util.Objects;
 @AllArgsConstructor
 @Entity
 @Table(name = "records")
-public class UserRecord extends BaseEntity {
+public class UserRecord extends BaseEntity implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -6559777780056487793L;
 
     @OneToOne
     @JoinColumn(name = "operation_id")

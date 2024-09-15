@@ -2,7 +2,7 @@ package ntd.calculator.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import ntd.calculator.domain.Operation;
-import ntd.calculator.domain.OperationType;
+import ntd.calculator.enums.OperationType;
 import ntd.calculator.repository.OperationRepository;
 import ntd.calculator.service.OperationService;
 import org.springframework.stereotype.Service;

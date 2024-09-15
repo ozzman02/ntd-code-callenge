@@ -1,7 +1,7 @@
 package ntd.calculator.dto;
 
 import lombok.*;
-import ntd.calculator.domain.OperationType;
+import ntd.calculator.enums.OperationType;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;

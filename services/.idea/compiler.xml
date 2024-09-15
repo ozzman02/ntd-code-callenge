@@ -11,10 +11,12 @@
         <module name="ntd-eureka-server" />
         <module name="ntd-api-gateway" />
         <module name="ntd-calculator-service" />
-        <module name="ntd-configuration-server" />
         <module name="ntd-user-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ntd-configuration-server" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

@@ -10,6 +10,10 @@ public class ApplicationConstants {
 
     public static final String BEARER = "Bearer ";
 
+    public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
+
+    public static final String ISSUER = "NTD SOFTWARE";
+
     public static final String[] IGNORED_REQUEST_MATCHERS = { "/swagger-ui.html/**",
             "/swagger-resources/**", "/swagger-ui/**", "/v3/api-docs/**" };
 

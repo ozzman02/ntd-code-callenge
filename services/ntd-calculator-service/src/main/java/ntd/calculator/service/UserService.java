@@ -1,7 +1,7 @@
 package ntd.calculator.service;
 
 import ntd.calculator.domain.User;
-import ntd.calculator.domain.UserStatus;
+import ntd.calculator.enums.UserStatus;
 
 public interface UserService {
 

@@ -1,7 +1,7 @@
 package ntd.calculator.service;
 
 import ntd.calculator.domain.Operation;
-import ntd.calculator.domain.OperationType;
+import ntd.calculator.enums.OperationType;
 import ntd.calculator.repository.OperationRepository;
 import ntd.calculator.service.impl.OperationServiceImpl;
 import org.junit.jupiter.api.BeforeEach;

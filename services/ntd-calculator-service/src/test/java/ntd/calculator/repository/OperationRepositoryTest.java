@@ -1,6 +1,6 @@
 package ntd.calculator.repository;
 
-import ntd.calculator.domain.OperationType;
+import ntd.calculator.enums.OperationType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

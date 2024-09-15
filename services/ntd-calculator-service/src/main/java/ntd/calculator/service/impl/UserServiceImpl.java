@@ -2,7 +2,7 @@ package ntd.calculator.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import ntd.calculator.domain.User;
-import ntd.calculator.domain.UserStatus;
+import ntd.calculator.enums.UserStatus;
 import ntd.calculator.repository.UserRepository;
 import ntd.calculator.service.UserService;
 import org.springframework.stereotype.Service;

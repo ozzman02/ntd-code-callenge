@@ -1,7 +1,7 @@
 package ntd.calculator.repository;
 
 import ntd.calculator.domain.Operation;
-import ntd.calculator.domain.OperationType;
+import ntd.calculator.enums.OperationType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

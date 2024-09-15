@@ -1,4 +1,4 @@
-package ntd.calculator.domain;
+package ntd.calculator.enums;
 
 public enum OperationType {
     STANDARD,

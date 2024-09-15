@@ -1,6 +1,10 @@
 package ntd.calculator.service;
 
-import ntd.calculator.domain.*;
+import ntd.calculator.domain.Operation;
+import ntd.calculator.domain.User;
+import ntd.calculator.domain.UserRecord;
+import ntd.calculator.enums.OperationType;
+import ntd.calculator.enums.UserStatus;
 import ntd.calculator.repository.UserRecordRepository;
 import ntd.calculator.service.impl.UserRecordServiceImpl;
 import org.junit.jupiter.api.Test;

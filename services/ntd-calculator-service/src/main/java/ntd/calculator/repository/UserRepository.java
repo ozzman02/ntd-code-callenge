@@ -1,7 +1,7 @@
 package ntd.calculator.repository;
 
 import ntd.calculator.domain.User;
-import ntd.calculator.domain.UserStatus;
+import ntd.calculator.enums.UserStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

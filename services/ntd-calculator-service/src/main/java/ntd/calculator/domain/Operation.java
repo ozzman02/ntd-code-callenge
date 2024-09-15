@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ntd.calculator.enums.OperationType;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -15,7 +18,10 @@ import java.util.Objects;
 @AllArgsConstructor
 @Entity
 @Table(name = "operations")
-public class Operation extends BaseEntity {
+public class Operation extends BaseEntity implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 4376676391062625962L;
 
     @Column(name = "type")
     @Enumerated(EnumType.STRING)

@@ -1,7 +1,7 @@
 package ntd.calculator.repository;
 
 import ntd.calculator.domain.User;
-import ntd.calculator.domain.UserStatus;
+import ntd.calculator.enums.UserStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

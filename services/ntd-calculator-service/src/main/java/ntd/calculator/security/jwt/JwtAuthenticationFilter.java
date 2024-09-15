@@ -1,4 +1,4 @@
-package com.ntd.security.jwt;
+package ntd.calculator.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
@@ -19,7 +19,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Collections;
 
-import static com.ntd.constants.ApplicationConstants.BEARER;
+import static ntd.calculator.constants.ApplicationConstants.BEARER;
 
 @Component
 @RequiredArgsConstructor

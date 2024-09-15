@@ -1,4 +1,4 @@
-package com.ntd.security.jwt;
+package ntd.calculator.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 
-import static com.ntd.constants.ApplicationConstants.SECRET;
+import static ntd.calculator.constants.ApplicationConstants.SECRET;
 
 @Component
 public class JwtUtil {
