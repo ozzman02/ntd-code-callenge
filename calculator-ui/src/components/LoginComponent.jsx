@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 
 export default function LoginComponent() {
 
@@ -7,10 +7,39 @@ export default function LoginComponent() {
 
     const [password, setPassword] = useState('');
 
+    const [errors, setErrors] = useState({});
+
     const onLoginHandler = (event) => {
+        
         event.preventDefault();
-        console.log('Login request -> ', { username, password });
+        
+        const formErrors = validate();
+        if (Object.keys(formErrors).length > 0) {
+            setErrors(formErrors);
+        } else {
+            setErrors({});
+            console.log('Login request -> ', { username, password });
+        }
+        
     };
+
+    const validate = () => {
+        
+        const newErrors = {};
+        
+        if (!username) {
+            newErrors.username = 'Username is required';
+        } else if (!/\S+@\S+\.\S+/.test(username)) {
+            newErrors.username = 'Username must be a valid email address';
+        }
+
+        if (!password) {
+            newErrors.password = 'Password is required';
+        }
+
+        return newErrors;
+
+    }
 
     return (
         <div className="login-wrapper">
@@ -19,13 +48,17 @@ export default function LoginComponent() {
                 <h3 className="login-title">Login</h3>
                 <Form onSubmit={onLoginHandler}>
                     <Form.Group className="mb-3" controlId="formBasicUsername">
-                        <Form.Label>Email address</Form.Label>
+                        <Form.Label>Username</Form.Label>
                         <Form.Control
                             type="email"
                             placeholder="Enter username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            isInvalid={!!errors.username}
                         />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.username}
+                        </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
@@ -34,7 +67,11 @@ export default function LoginComponent() {
                             placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            isInvalid={!!errors.password}
                         />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.password}
+                        </Form.Control.Feedback>
                     </Form.Group>
                     <Button variant="primary" type="submit" className="login-button">Login</Button>
                 </Form>
