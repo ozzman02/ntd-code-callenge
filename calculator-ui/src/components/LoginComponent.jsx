@@ -14,6 +14,7 @@ export default function LoginComponent() {
         event.preventDefault();
         
         const formErrors = validate();
+        
         if (Object.keys(formErrors).length > 0) {
             setErrors(formErrors);
         } else {
