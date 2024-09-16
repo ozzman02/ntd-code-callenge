@@ -5,7 +5,7 @@ import FooterComponent from '../components/FooterComponent';
 
 export default function HomePage() {
     return (
-        <div>
+        <div className='container-fluid padding-bottom:60px;'>
             <HeaderComponent />
             <CalculatorComponent />
             <UserHistoryComponent />
