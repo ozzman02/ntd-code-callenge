@@ -1,0 +1,21 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: ntd-api-gateway
+  cloud:
+    gateway:
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+      discovery:
+        locator: enabled
+      httpclient:
+        connect-timeout: 60000
+        response-timeout: 60s

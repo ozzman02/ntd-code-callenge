@@ -35,7 +35,7 @@ public class ApplicationConstants {
 
     public static final String CORS_CONFIG_PATTERN = "/**";
 
-    public static final String REACT_APP_ORIGIN = "http://localhost:3000";
+    public static final String REACT_APP_ORIGIN = "http://localhost:5173";
 
     public static final String CALCULATOR_URL = "/api/calculator";
 
