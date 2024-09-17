@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Button, Modal, ListGroup, Navbar, Container, Nav } from "react-bootstrap";
 
-export default function HeaderComponent() {
+export default function HeaderComponent({ username }) {
 
     const [showModal, setShowModal] = useState(false);
 
@@ -20,7 +21,7 @@ export default function HeaderComponent() {
           <Nav className="header-right" activeKey="/home">
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="#instructions" onClick={onShowModalHandler}>Instructions</Nav.Link>
-            <Nav.Link href="#currentUser" eventKey="disabled" disabled><i>oscar.santamaria@ntdsoftware.com</i></Nav.Link>
+            <Nav.Link href="#currentUser" eventKey="disabled" disabled><i>{username}</i></Nav.Link>
             <Nav.Link href="#logout">Logout</Nav.Link>
           </Nav>
         </Container>

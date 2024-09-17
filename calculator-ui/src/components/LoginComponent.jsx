@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { authenticate } from '../services/AuthenticationService';
+import useAuthorizationContext from '../hooks/UseAuthorizationContext';
+import { useNavigate } from "react-router-dom";
 
 export default function LoginComponent() {
+
+    const { isUserAuthenticated, userLogin } = useAuthorizationContext();
 
     const [username, setUsername] = useState('');
 
@@ -9,19 +14,36 @@ export default function LoginComponent() {
 
     const [errors, setErrors] = useState({});
 
-    const onLoginHandler = (event) => {
+    const navigator = useNavigate();
+
+    const onLoginHandler = async (event) => {
         
         event.preventDefault();
         
         const formErrors = validate();
-        
+
         if (Object.keys(formErrors).length > 0) {
             setErrors(formErrors);
         } else {
             setErrors({});
             console.log('Login request -> ', { username, password });
-        }
-        
+
+            try {
+                const response = await authenticate(username, password);
+                console.log(response);
+                const { token } = response.data;
+                const authenticatedUser = { username, token };
+                userLogin(authenticatedUser);
+                setUsername('');
+                setPassword('');
+            } catch (error) {
+                console.log(error);
+            }
+
+            if (isUserAuthenticated()) {
+                navigator('/home');
+            }
+        } 
     };
 
     const validate = () => {
@@ -39,11 +61,11 @@ export default function LoginComponent() {
         }
 
         return newErrors;
-
     }
 
     return (
         <div className="login-wrapper">
+            
             <div className="login-form-container">
                 <h2 className="text-center">NTD Calculator App</h2>
                 <h3 className="login-title">Login</h3>
