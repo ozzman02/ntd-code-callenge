@@ -7,9 +7,9 @@ function AuthorizationProvider({ children }) {
 
     const [user, setUser] = useState(null);
 
-    const setAuthorizationHeader = () => {
+    const getAuthorizationHeader = () => {
         if (user && user.token) {
-            return { Authorization: 'Bearer ' + user.accessToken };
+            return { Authorization: 'Bearer ' + user.token };
         } else {
             return {};
         } 
@@ -34,7 +34,7 @@ function AuthorizationProvider({ children }) {
     };
 
     const contextValue = {
-        setAuthorizationHeader,
+        getAuthorizationHeader,
         user,
         getUser,
         isUserAuthenticated,

@@ -2,20 +2,33 @@ import { useState } from 'react';
 import UserHistoryComponent from './UserHistoryComponent';
 import { Form, Button } from "react-bootstrap";
 import { FcCalculator } from "react-icons/fc";
+import useAuthorizationContext from '../hooks/UseAuthorizationContext';
+import { generateMathematicalExpression, calculateResult } from '../services/CalculatorService';
 
 
 export default function CalculatorComponent() {
 
+    const { getAuthorizationHeader } = useAuthorizationContext();
+
     const [mathematicalExpression, setMathematicalExpression] = useState('');
+
+    const [operationResult, setOperationResult] = useState('');
 
     const [errors, setErrors] = useState({});
 
-    const onGenerateMathExpHandler = (event) => {
+    const authorizationHeader = getAuthorizationHeader();
+
+    const onGenerateMathExpHandler = async (event) => {
         event.preventDefault();
-        setMathematicalExpression("1+1+2+3+4+5");
+        try {
+            const response = await generateMathematicalExpression(authorizationHeader);
+            setMathematicalExpression(response.data);
+        } catch (error) {
+            console.log(error);
+        }        
     };
 
-    const onCalculateHandler = (event) => {
+    const onCalculateHandler = async (event) => {
         event.preventDefault();
         const formErrors = validate();
         if (Object.keys(formErrors).length > 0) {
@@ -23,6 +36,15 @@ export default function CalculatorComponent() {
         } else {
             setErrors({});
             console.log('Calculate -> ', mathematicalExpression);
+            try {
+                const response = await calculateResult(authorizationHeader, { mathematicalExpression });
+                console.log(response.data);
+                setOperationResult(response.data.operationResponse);
+                setMathematicalExpression('');
+                setErrors({});
+            } catch (error) {
+                console.log(error);
+            }
         }
     };
 
@@ -49,6 +71,7 @@ export default function CalculatorComponent() {
                         <Form.Group className="mb-3" controlId="formBasicMathExpression">
                             <Form.Control
                                 type="text"
+                                className="text-end"
                                 placeholder="Enter a valid mathematical expression"
                                 value={mathematicalExpression}
                                 onChange={(e) => setMathematicalExpression(e.target.value)}
@@ -61,7 +84,7 @@ export default function CalculatorComponent() {
                         <Button variant="primary" type="submit">Calculate</Button>
                     </Form>
                     <h5 className='mt-4'>Operation Result</h5>
-                    <input type='text' disabled className='result-input'></input>
+                    <input type='text' disabled className='result-input' value={operationResult}></input>
                     <div className='text-center'>
                         <FcCalculator size={300}/>
                     </div>

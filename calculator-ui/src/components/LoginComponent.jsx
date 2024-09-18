@@ -63,7 +63,6 @@ export default function LoginComponent() {
 
     return (
         <div className="login-wrapper">
-            
             <div className="login-form-container">
                 <h2 className="text-center">NTD Calculator App</h2>
                 <h3 className="login-title">Login</h3>
