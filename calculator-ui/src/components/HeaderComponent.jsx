@@ -1,10 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Button, Modal, ListGroup, Navbar, Container, Nav } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import useAuthorizationContext from '../hooks/UseAuthorizationContext';
 
 export default function HeaderComponent({ username }) {
 
+    const { userLogout } = useAuthorizationContext();
+
     const [showModal, setShowModal] = useState(false);
+
+    const navigator = useNavigate();
 
     const onShowModalHandler = () => {
       setShowModal(true);
@@ -12,6 +18,11 @@ export default function HeaderComponent({ username }) {
 
     const onCloseModalHandler = () => {
       setShowModal(false);
+    };
+
+    const onLogoutHandler = () => {
+      userLogout();
+      navigator('/');
     };
 
     return (
@@ -22,7 +33,7 @@ export default function HeaderComponent({ username }) {
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="#instructions" onClick={onShowModalHandler}>Instructions</Nav.Link>
             <Nav.Link href="#currentUser" eventKey="disabled" disabled><i>{username}</i></Nav.Link>
-            <Nav.Link href="#logout">Logout</Nav.Link>
+            <Nav.Link href="#logout" onClick={onLogoutHandler}>Logout</Nav.Link>
           </Nav>
         </Container>
         <Modal
@@ -47,12 +58,12 @@ export default function HeaderComponent({ username }) {
                   The cost is <b><i>$5</i></b>.
                 </ListGroup.Item>
                 <ListGroup.Item as="li">
-                  You can generate a random math expression using the <b><i>Generate Mathematical Expression button</i></b>. 
+                  You can generate a random math expression using the <b><i>Generate Mathematical Expression </i></b>button. 
                   This will be an <b><i>Special</i></b> math expression and the cost is <b><i>$10</i></b>. 
                 </ListGroup.Item>
                 <ListGroup.Item as="li">
-                  If an operation contains unsupported operators or throws an error the result will be an <b><i>Invalid</i></b> 
-                  math expression. There is no charge for this operation type.
+                  If an operation contains unsupported operators or throws an error the result will be an <b><i>Invalid</i></b> math expression. 
+                  There is no charge for this operation type.
                 </ListGroup.Item>
                 <ListGroup.Item as="li">
                   There is an implicit multiplication operation when using the <b><i>sqrt()</i></b> operation next to another operand. 

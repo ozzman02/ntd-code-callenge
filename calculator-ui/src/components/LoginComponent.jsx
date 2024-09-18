@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { authenticate } from '../services/AuthenticationService';
-import useAuthorizationContext from '../hooks/UseAuthorizationContext';
 import { useNavigate } from "react-router-dom";
+import useAuthorizationContext from '../hooks/UseAuthorizationContext';
 
 export default function LoginComponent() {
 
@@ -27,7 +27,6 @@ export default function LoginComponent() {
         } else {
             setErrors({});
             console.log('Login request -> ', { username, password });
-
             try {
                 const response = await authenticate(username, password);
                 console.log(response);
@@ -39,7 +38,6 @@ export default function LoginComponent() {
             } catch (error) {
                 console.log(error);
             }
-
             if (isUserAuthenticated()) {
                 navigator('/home');
             }
