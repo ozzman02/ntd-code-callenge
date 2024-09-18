@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -32,13 +31,13 @@ public class UserServiceTest {
 
     @BeforeEach
     void setup() {
-        activeUser.setId(UUID.randomUUID().toString());
+        activeUser.setId(1L);
         activeUser.setUsername("oscar.santamaria@ntdsoftware.com");
         activeUser.setPassword("testPassword");
         activeUser.setStatus(UserStatus.ACTIVE);
         activeUser.setBalance(new BigDecimal(5000));
 
-        inactiveUser.setId(UUID.randomUUID().toString());
+        inactiveUser.setId(2L);
         inactiveUser.setUsername("nayla.corteguera@ntdsoftware.com");
         inactiveUser.setPassword("testPassword");
         inactiveUser.setStatus(UserStatus.INACTIVE);
