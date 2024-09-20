@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import UserHistoryComponent from './UserHistoryComponent';
 import { Form, Button } from "react-bootstrap";
 import { FcCalculator } from "react-icons/fc";
 import useAuthorizationContext from '../hooks/UseAuthorizationContext';
-import { generateMathematicalExpression, calculateResult } from '../services/CalculatorService';
+import { generateMathematicalExpression, calculateResult, getUserRecords } from '../services/CalculatorService';
 
 
 export default function CalculatorComponent() {
 
-    const { getAuthorizationHeader } = useAuthorizationContext();
+    const { getAuthorizationHeader, getUser } = useAuthorizationContext();
 
     const [mathematicalExpression, setMathematicalExpression] = useState('');
 
@@ -16,10 +16,48 @@ export default function CalculatorComponent() {
 
     const [errors, setErrors] = useState({});
 
+    const [userRecords, setUserRecords] = useState([]);
+
+    const [pageNumber, setPageNumber] = useState(0);
+
+    const [totalPages, setTotalPages] = useState(0);
+
+    const [newUserRecord, setNewUserRecord] = useState(false);
+
+    const { userId } = getUser();
+
     const authorizationHeader = getAuthorizationHeader();    
+
+    useEffect(() => {
+        fetchUserRecords();
+    }, [pageNumber]);
+
+    useEffect(() => {
+        if (newUserRecord === true) {
+            fetchUserRecords();
+        }
+    }, [newUserRecord]);
+
+    const pageNavigationHandler = (event) => {
+        console.log(event);
+        const selectedPage = event.selected;
+        setPageNumber(selectedPage);
+    };
+
+    const fetchUserRecords = async () => {
+        try {
+            const response = await getUserRecords(authorizationHeader, userId, pageNumber);
+            setUserRecords(response.data.content);
+            setTotalPages(response.data.totalPages);
+            setPageNumber(response.data.pageable.pageNumber);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const onGenerateMathExpHandler = async (event) => {
         event.preventDefault();
+        setNewUserRecord(false);
         try {
             const response = await generateMathematicalExpression(authorizationHeader);
             setMathematicalExpression(response.data);
@@ -40,6 +78,7 @@ export default function CalculatorComponent() {
                 setOperationResult(response.data.operationResponse);
                 setMathematicalExpression('');
                 setErrors({});
+                setNewUserRecord(true);
             } catch (error) {
                 console.log(error);
             }
@@ -88,7 +127,11 @@ export default function CalculatorComponent() {
                     </div>
                 </div>
                 <div className="col-7 text-center">
-                    <UserHistoryComponent />
+                    <UserHistoryComponent 
+                        userRecords={userRecords} 
+                        totalPages={totalPages} 
+                        pageNavigationHandler={pageNavigationHandler} 
+                    />
                 </div>
             </div>
         </div>

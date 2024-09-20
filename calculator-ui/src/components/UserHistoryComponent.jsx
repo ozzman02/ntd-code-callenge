@@ -1,44 +1,11 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react';
-import useAuthorizationContext from '../hooks/UseAuthorizationContext';
 import ReactPaginate from "react-paginate";
-import { getUserRecords } from '../services/CalculatorService';
 
+export default function UserHistoryComponent({ userRecords, totalPages, pageNavigationHandler }) {
 
-export default function UserHistoryComponent() {
-
-    const { getAuthorizationHeader, getUser } = useAuthorizationContext();
-
-    const [userRecords, setUserRecords] = useState([]);
-
-    const [pageNumber, setPageNumber] = useState(0);
-
-    const [totalPages, setTotalPages] = useState(0);
-
-    const { userId } = getUser();
-
-    const authorizationHeader = getAuthorizationHeader();
-
-    const pageNavigationHandler = (event) => {
-        console.log(event);
-        const selectedPage = event.selected;
-        setPageNumber(selectedPage);
-    };
-
-    const fetchUserRecords = async () => {
-        try {
-            const response = await getUserRecords(authorizationHeader, userId, pageNumber);
-            setUserRecords(response.data.content);
-            setTotalPages(response.data.totalPages);
-            setPageNumber(response.data.pageable.pageNumber);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    useEffect(() => {
-        fetchUserRecords();
-    }, [pageNumber])
+    const onPageNavigationClick = (event) => {
+        pageNavigationHandler(event);
+    }
 
     return (
         <div className="table-responsive text-nowrap">
@@ -47,6 +14,7 @@ export default function UserHistoryComponent() {
                 <thead>
                     <tr className="text-center">
                         <th>Date</th>
+                        <th>Type</th>
                         <th>Operation</th>
                         <th>Result</th>
                         <th>Amount</th>
@@ -57,6 +25,7 @@ export default function UserHistoryComponent() {
                     {userRecords.map((record) => (
                         <tr key={record.id}>
                             <td>{record.createdDate}</td>
+                            <td>{record.operationType}</td>
                             <td>{record.operationValue}</td>
                             <td>{record.operationResponse}</td>
                             <td>{record.amount}</td>
@@ -72,7 +41,7 @@ export default function UserHistoryComponent() {
                     breakLabel={"..."}
                     breakClassName={"break-me"}
                     pageCount={totalPages}
-                    onPageChange={pageNavigationHandler}
+                    onPageChange={onPageNavigationClick}
                     containerClassName={"pagination"}
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}

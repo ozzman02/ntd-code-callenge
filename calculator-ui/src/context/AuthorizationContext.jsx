@@ -7,6 +7,11 @@ function AuthorizationProvider({ children }) {
 
     const [user, setUser] = useState(null);
 
+    useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        setUser(storedUser);
+    }, []);
+
     const getAuthorizationHeader = () => {
         if (user && user.token) {
             return { Authorization: 'Bearer ' + user.token };
