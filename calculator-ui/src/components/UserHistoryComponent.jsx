@@ -1,100 +1,44 @@
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from 'react';
+import useAuthorizationContext from '../hooks/UseAuthorizationContext';
 import ReactPaginate from "react-paginate";
-import { useState } from "react";
+import { getUserRecords } from '../services/CalculatorService';
+
 
 export default function UserHistoryComponent() {
 
-    const [totalPages, setTotalPages] = useState(0);
+    const { getAuthorizationHeader, getUser } = useAuthorizationContext();
+
+    const [userRecords, setUserRecords] = useState([]);
 
     const [pageNumber, setPageNumber] = useState(0);
 
+    const [totalPages, setTotalPages] = useState(0);
+
+    const { userId } = getUser();
+
+    const authorizationHeader = getAuthorizationHeader();
+
     const pageNavigationHandler = (event) => {
+        console.log(event);
         const selectedPage = event.selected;
         setPageNumber(selectedPage);
     };
 
-    const dummyData = [
-        {
-            "id": 14,
-            "operationType": "COMPLEX",
-            "amount": 5,
-            "balance": 4950.00,
-            "operation": "892*623*359/367*382+415/324*427/892/241*381/665-527+635-38",
-            "result": 207656148.49737048,
-            "date":"2024-09-15 22:26:21"
-        },
-        {
-            "id": 13,
-            "operationType": "COMPLEX",
-            "amount": 5,
-            "balance": 4955.00,
-            "operation": "706+319-129-230-388*190*108+899+78/404*836/801-645/191+110",
-            "result": -7960088.175457807,
-            "date":"2024-09-15 22:25:40"
-        },
-        {
-            "id": 12,
-            "operationType": "COMPLEX",
-            "amount": 5,
-            "balance": 4960.00,
-            "operation": "313+30+77/574-801+214+391*154+262-372/3+988/184*739*305",
-            "result": 1270381.2863202544,
-            "date":"2024-09-15 22:24:39"
-        },
-        {
-            "id": 11,
-            "operationType": "COMPLEX",
-            "amount": 5,
-            "balance": 4965.00,
-            "operation": "906*719-10-848*216*486-481-870/94/847/911/763*325/568-810",
-            "result": -88369535.00000001,
-            "date":"2024-09-15 22:24:18"
-        },
-        {
-            "id": 10,
-            "operationType": "COMPLEX",
-            "amount": 5,
-            "balance": 4970.00,
-            "operation": "464+500+48-935/656*764/910+343-879/666-296/918+869-184+297",
-            "result": 2334.161110503112,
-            "date":"2024-09-15 22:22:55"
-        },
-        {
-            "id": 9,
-            "operationType": "COMPLEX",
-            "amount": 5,
-            "balance": 4970.00,
-            "operation": "464+500+48-935/656*764/910+343-879/666-296/918+869-184+297",
-            "result": 2334.161110503112,
-            "date":"2024-09-15 22:22:55"
-        },
-        {
-            "id": 8,
-            "operationType": "COMPLEX",
-            "amount": 5,
-            "balance": 4970.00,
-            "operation": "464+500+48-935/656*764/910+343-879/666-296/918+869-184+297",
-            "result": 2334.161110503112,
-            "date":"2024-09-15 22:22:55"
-        },
-        {
-            "id": 7,
-            "operationType": "COMPLEX",
-            "amount": 5,
-            "balance": 4970.00,
-            "operation": "464+500+48-935/656*764/910+343-879/666-296/918+869-184+297",
-            "result": 2334.161110503112,
-            "date":"2024-09-15 22:22:55"
-        },
-        {
-            "id": 6,
-            "operationType": "COMPLEX",
-            "amount": 5,
-            "balance": 4970.00,
-            "operation": "464+500+48-935/656*764/910+343-879/666-296/918+869-184+297",
-            "result": 2334.161110503112,
-            "date":"2024-09-15 22:22:55"
+    const fetchUserRecords = async () => {
+        try {
+            const response = await getUserRecords(authorizationHeader, userId, pageNumber);
+            setUserRecords(response.data.content);
+            setTotalPages(response.data.totalPages);
+            setPageNumber(response.data.pageable.pageNumber);
+        } catch (error) {
+            console.log(error);
         }
-    ]
+    };
+
+    useEffect(() => {
+        fetchUserRecords();
+    }, [pageNumber])
 
     return (
         <div className="table-responsive text-nowrap">
@@ -110,13 +54,13 @@ export default function UserHistoryComponent() {
                     </tr>
                 </thead>
                 <tbody>
-                    {dummyData.map((record) => (
+                    {userRecords.map((record) => (
                         <tr key={record.id}>
-                            <td>{record.date}</td>
-                            <td>{record.operation}</td>
-                            <td>{record.result}</td>
+                            <td>{record.createdDate}</td>
+                            <td>{record.operationValue}</td>
+                            <td>{record.operationResponse}</td>
                             <td>{record.amount}</td>
-                            <td>{record.balance}</td>
+                            <td>{record.userBalance}</td>
                         </tr>
                     ))}
                 </tbody>

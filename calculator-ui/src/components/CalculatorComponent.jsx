@@ -16,7 +16,7 @@ export default function CalculatorComponent() {
 
     const [errors, setErrors] = useState({});
 
-    const authorizationHeader = getAuthorizationHeader();
+    const authorizationHeader = getAuthorizationHeader();    
 
     const onGenerateMathExpHandler = async (event) => {
         event.preventDefault();
@@ -35,10 +35,8 @@ export default function CalculatorComponent() {
             setErrors(formErrors);
         } else {
             setErrors({});
-            console.log('Calculate -> ', mathematicalExpression);
             try {
                 const response = await calculateResult(authorizationHeader, { mathematicalExpression });
-                console.log(response.data);
                 setOperationResult(response.data.operationResponse);
                 setMathematicalExpression('');
                 setErrors({});

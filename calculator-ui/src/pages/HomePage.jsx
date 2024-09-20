@@ -7,8 +7,6 @@ export default function HomePage() {
 
     const { getUser } = useAuthorizationContext();
 
-    console.log("Home Page -> ", getUser().username);
-    
     return (
         <div className='container-fluid padding-bottom:60px;'>
             <HeaderComponent username={getUser().username} />

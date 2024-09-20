@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { authenticate } from '../services/AuthenticationService';
 import { useNavigate } from "react-router-dom";
 import useAuthorizationContext from '../hooks/UseAuthorizationContext';
+import { jwtDecode } from "jwt-decode";
 
 export default function LoginComponent() {
 
@@ -29,9 +30,9 @@ export default function LoginComponent() {
             console.log('Login request -> ', { username, password });
             try {
                 const response = await authenticate(username, password);
-                console.log(response);
                 const { token } = response.data;
-                const authenticatedUser = { username, token };
+                const { userId } = jwtDecode(token);
+                const authenticatedUser = { userId, username, token };
                 userLogin(authenticatedUser);
                 setUsername('');
                 setPassword('');
