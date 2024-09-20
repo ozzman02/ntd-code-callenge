@@ -9,6 +9,6 @@ public interface UserRecordService {
 
     UserRecord save(UserRecord userRecord);
 
-    Page<UserRecordDto> findAllUserRecordsByUserId(Long userId, Pageable pageable);
+    Page<UserRecordDto> findByUser(Pageable pageable);
 
 }

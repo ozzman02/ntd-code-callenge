@@ -13,8 +13,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.ntd.constants.ApplicationConstants.ISSUER;
-import static com.ntd.constants.ApplicationConstants.SECRET;
+import static com.ntd.constants.ApplicationConstants.*;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +22,11 @@ public class JwtService {
     private final CustomUserDetailsService customUserDetailsService;
 
     public String generateToken(String username) {
-        return createToken(new HashMap<>(), customUserDetailsService.loadUserByUsername(username));
+        CustomUserDetails userDetails = (CustomUserDetails) customUserDetailsService
+                .loadUserByUsername(username);
+        Map<String, Object> claimsMap = new HashMap<>();
+        claimsMap.put(USER_ID_CLAIM, userDetails.getId());
+        return createToken(claimsMap, userDetails);
     }
 
     private String createToken(Map<String, Object> claims, UserDetails userDetails) {

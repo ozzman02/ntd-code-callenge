@@ -1,7 +1,6 @@
 package ntd.calculator.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import ntd.calculator.domain.User;
 import ntd.calculator.domain.UserRecord;
 import ntd.calculator.dto.UserRecordDto;
 import ntd.calculator.mapper.UserRecordMapper;
@@ -30,10 +29,10 @@ public class UserRecordServiceImpl implements UserRecordService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<UserRecordDto> findAllUserRecordsByUserId(Long userId, Pageable pageable) {
+    public Page<UserRecordDto> findByUser(Pageable pageable) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findByUsername(authentication.getName());
-        return userRecordRepository.findUserRecordsByUserId(user.getId(), pageable)
+        return userRecordRepository.findByUser(userService
+                        .findByUsername(authentication.getName()), pageable)
                 .map(UserRecordMapper::mapToUserRecordDto);
     }
 

@@ -2,7 +2,6 @@ package ntd.calculator.controller;
 
 import lombok.RequiredArgsConstructor;
 import ntd.calculator.dto.MathematicalExpressionDto;
-import ntd.calculator.dto.UserRecordDto;
 import ntd.calculator.service.CalculatorService;
 import ntd.calculator.service.MathExpGeneratorService;
 import ntd.calculator.service.UserRecordService;
@@ -35,10 +34,9 @@ public class CalculatorController {
     public String generateRandomMathExpression() { return mathExpGeneratorService.generate(); }
 
     @GetMapping(USER_RECORDS_URL)
-    public ResponseEntity<Page<UserRecordDto>> getUserRecords(@PathVariable Long id,
-                                                              @PathVariable Integer page) {
-        return new ResponseEntity<>(userRecordService.findAllUserRecordsByUserId(id,
-                PageRequest.of(page, PAGE_SIZE)), HttpStatus.OK);
+    public ResponseEntity<Page<?>> getUserRecords(@PathVariable Integer page) {
+        return new ResponseEntity<>(userRecordService
+                .findByUser(PageRequest.of(page, PAGE_SIZE)), HttpStatus.OK);
     }
 
 }

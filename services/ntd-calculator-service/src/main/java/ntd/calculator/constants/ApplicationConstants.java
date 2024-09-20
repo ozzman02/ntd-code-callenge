@@ -31,12 +31,6 @@ public class ApplicationConstants {
     public static final String INSUFFICIENT_BALANCE_LOG_MSG =
             "Insufficient balance - Invalid record will be created";
 
-    public static final String ALL = "*";
-
-    public static final String CORS_CONFIG_PATTERN = "/**";
-
-    public static final String REACT_APP_ORIGIN = "http://localhost:5173";
-
     public static final String CALCULATOR_URL = "/api/calculator";
 
     public static final String GENERATOR_URL = "/generate";
@@ -46,10 +40,8 @@ public class ApplicationConstants {
     public static final String GET_RANDOM_NUMBERS_REQUEST =
             "https://www.random.org/integers/?num=15&min=1&max=1000&base=10&format=plain&col=1&rnd=new";
 
-    public static final Long MAX_AGE = 3600L;
-
     public static final String[] ARITHMETIC_OPERATORS = new String[] { "+", "-", "*", "/" };
 
-    public static final Integer PAGE_SIZE = 5;
+    public static final Integer PAGE_SIZE = 10;
 
 }
