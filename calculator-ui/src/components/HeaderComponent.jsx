@@ -31,8 +31,8 @@ export default function HeaderComponent({ username }) {
           <Navbar.Brand href="#home">NTD Software Calculator</Navbar.Brand>
           <Nav className="header-right" activeKey="/home">
             <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="instructions" onClick={onShowModalHandler}>Instructions</Nav.Link>
-            <Nav.Link href="currentUser" eventKey="disabled" disabled><i>{username}</i></Nav.Link>
+            <Nav.Link href="#instructions" onClick={onShowModalHandler}>Instructions</Nav.Link>
+            <Nav.Link href="#currentUser" eventKey="disabled" disabled><i>{username}</i></Nav.Link>
             <Nav.Link href="/logout" onClick={onLogoutHandler}>Logout</Nav.Link>
           </Nav>
         </Container>
