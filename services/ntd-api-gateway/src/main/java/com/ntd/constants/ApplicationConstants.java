@@ -20,13 +20,13 @@ public class ApplicationConstants {
 
     public static final String CALCULATOR_SERVICE_ROUTE_PATH = "/api/calculator/**";
 
-    //public static final String AUTHORIZATION_SERVICE_URI = "lb://ntd-authorization-service";
-    public static final String AUTHORIZATION_SERVICE_URI = "http://localhost:8081";
+    public static final String AUTHORIZATION_SERVICE_URI = "lb://ntd-authorization-service";
+    //public static final String AUTHORIZATION_SERVICE_URI = "http://localhost:8081";
 
-    //public static final String USER_SERVICE_URI = "lb://ntd-user-service";
-    public static final String USER_SERVICE_URI = "http://localhost:8082";
+    public static final String USER_SERVICE_URI = "lb://ntd-user-service";
+    //public static final String USER_SERVICE_URI = "http://localhost:8082";
 
-    //public static final String CALCULATOR_SERVICE_URI = "lb://ntd-calculator-service";
-    public static final String CALCULATOR_SERVICE_URI = "http://localhost:8083";
+    public static final String CALCULATOR_SERVICE_URI = "lb://ntd-calculator-service";
+    //public static final String CALCULATOR_SERVICE_URI = "http://localhost:8083";
 
 }
