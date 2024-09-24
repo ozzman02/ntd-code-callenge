@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "e20521cd-8cd4-49cc-bde7-d11ac90a7221",
+		"name": "NTD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4570931"
+	},
+	"item": [
+		{
+			"name": "local",
+			"item": [
+				{
+					"name": "authorization-service",
+					"item": [
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"oscar.santamaria@ntdsoftware.com\",\r\n    \"password\": \"user1pwd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "calculator-service",
+					"item": [
+						{
+							"name": "Calculate",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvc2Nhci5zYW50YW1hcmlhQG50ZHNvZnR3YXJlLmNvbSIsImlzcyI6Ik5URCBTT0ZUV0FSRSIsImlhdCI6MTcyNjYyNjAwNiwiZXhwIjoxNzI2NjI5NjA2fQ.arxfmslBa91S0EJghpSEIE6B_Aq3m0MbmdxL6-OEDDI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mathematicalExpression\": \"892*623*359/367*382+415/324*427/892/241*381/665-527+635-38\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/calculator",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"calculator"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvc2Nhci5zYW50YW1hcmlhQG50ZHNvZnR3YXJlLmNvbSIsImlzcyI6Ik5URCBTT0ZUV0FSRSIsImlhdCI6MTcyNjYyNjAwNiwiZXhwIjoxNzI2NjI5NjA2fQ.arxfmslBa91S0EJghpSEIE6B_Aq3m0MbmdxL6-OEDDI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/calculator/generate",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"calculator",
+										"generate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Random call",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://www.random.org/integers/?num=30&min=1&max=100000&base=10&format=plain&col=1&rnd=new",
+									"protocol": "https",
+									"host": [
+										"www",
+										"random",
+										"org"
+									],
+									"path": [
+										"integers",
+										""
+									],
+									"query": [
+										{
+											"key": "num",
+											"value": "30"
+										},
+										{
+											"key": "min",
+											"value": "1"
+										},
+										{
+											"key": "max",
+											"value": "100000"
+										},
+										{
+											"key": "base",
+											"value": "10"
+										},
+										{
+											"key": "format",
+											"value": "plain"
+										},
+										{
+											"key": "col",
+											"value": "1"
+										},
+										{
+											"key": "rnd",
+											"value": "new"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Record Page",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvc2Nhci5zYW50YW1hcmlhQG50ZHNvZnR3YXJlLmNvbSIsImlzcyI6Ik5URCBTT0ZUV0FSRSIsImlhdCI6MTcyNjQzODQzNiwiZXhwIjoxNzI2NDQyMDM2fQ.DIs8E14eL04_Aia7Jke8vu3lXmOMMI1LrNjadI7SmCQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/calculator/records/1/page/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"calculator",
+										"records",
+										"1",
+										"page",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
