@@ -32,8 +32,5 @@ public class ApplicationConstants {
 
     public static final String GET_BY_USERNAME_AND_STATUS = "/getUserByUsername/{username}/{status}";
 
-    public static final String[] IGNORED_REQUEST_MATCHERS = { "/v1/auth/**", "/swagger-resources/**",
-            "/swagger-ui.html/**", "/swagger-resources/**", "/swagger-ui/**", "/v3/api-docs/**" };
-
     public static final String USER_ID_CLAIM = "userId";
 }

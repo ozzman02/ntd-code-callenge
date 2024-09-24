@@ -26,8 +26,7 @@ public class UserController {
     }
 
     @GetMapping(GET_BY_USERNAME_AND_STATUS)
-    public ResponseEntity<User> findUserByUsernameAndStatus(@PathVariable String username,
-                                                            @PathVariable UserStatus status) {
+    public ResponseEntity<User> findUserByUsernameAndStatus(@PathVariable String username, @PathVariable UserStatus status) {
         return new ResponseEntity<>(userService.findByUsernameAndStatus(username, status), HttpStatus.OK);
     }
 
