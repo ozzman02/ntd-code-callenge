@@ -1,5 +1,4 @@
 services:
-
   eureka-server:
     image: osantamaria/ntd-eureka-server:latest
     container_name: ntd-eureka-server
