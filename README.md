@@ -46,6 +46,27 @@ password: user2pwd
 ### Paginated table
 ![UI-Pagination](https://github.com/ozzman02/ntd-code-challenge/blob/main/files/ui/pagination-1.png)
 
+
+## Sample Mathematical Operations
+Feel free to modify this expressions or create yours !
+
+Standard:
+```sh
+Expression: "895+62+sqrt(30)*100"
+Result: 1504.7225575051662
+```
+Complex:
+```sh
+Expression: "820+683*744*195/664/769-376/73+319*83-940/551/761-821/740"
+Result: 27484.796632746715
+```
+Special:
+```sh
+Expression: "895+62+sqrt(30)*100+895+62+sqrt(30)*100+895+62+sqrt(30)*100+895+62+sqrt(30)*100+895+62+sqrt(30)*100+895+62+sqrt(30)*100"
+Result: 9028.335345030999
+```
+
+
 # NTD CALCULATOR API
 
 This API has been created following a microservice architecture using Java 17, Maven 3.9.6, Spring Boot 3.3.3, JWT authentication and MySQL database that work in conjunction with Flyway migrations seeds. Mathematical expressions are process with the help of the exp4j library. 
@@ -95,6 +116,9 @@ Migrations seeds are executed by the ntd-user-service. They can be found inside 
 |Operation value|Mathematical expression|
 |Operation response|Calculation result|
 |Created date|record created date|
+
+## Eureka Service Registry
+![EurekaRegistry](https://github.com/ozzman02/ntd-code-challenge/blob/main/files/eureka/eureka.png)
 
 
 ## Swagger UI and API endpoints
