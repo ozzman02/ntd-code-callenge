@@ -1,6 +1,54 @@
+# NTD CALCULATOR UI
+
+This application has been created using React 18.3.1 and Bootstrap 5 and it works as the UI for the NTD Calculator API. This is a simple UI that has the following features:
+
+- Generates a random mathematical expression to be calculated.
+- Allows the user to type a mathematical expression and calculate its result.
+- Visualize user's historical record of operations and calculations in a paginated table.
+
+## Instructions
+
+- The user can type any text in the _Enter a valid mathematical expression_ field but the only valid operators are _+, -, /, *,_ and _sqrt()_. You can use parenthesis _()_ as well.
+- Initial user balance has been set to _$5000_.
+- If the length of the math exp is _&gt; 1 and &lt; 20_ the operation type will be a _Standard_ math expression. The cost is _$1_.
+- If the length of the math exp is _&gt; 20 and &lt; 100_ the operation type will be a _Complex_ math expression. The cost is _$5_.
+- If the length of the math exp is _&gt;= 100_ the operation type will be an _Special_ math expression. The cost is _$10_.
+- If an operation contains unsupported operators or throws an error the result will be an _Invalid_ math expression. There is no charge for this operation type.
+- There is an implicit multiplication operation when using the <b><i>sqrt()</i></b> operation next to another operand. For example: _10+10sqrt(25)_ is equivalent to _10+10*sqrt(25)_.
+- _User Mathematical Operations History_ will be populated when there is an invalid or successful result.
+
+### Login
+![UI-Login](https://github.com/ozzman02/ntd-code-challenge/blob/main/files/ui/login.png)
+
+User1 credentials:
+```sh
+user: oscar.santamaria@ntdsoftware.com
+password: user1pwd
+```
+User2 credentials:
+```sh
+user: karen.navarro@ntdsoftware.com
+password: user2pwd
+```
+
+### Home Page
+![UI-HomePage](https://github.com/ozzman02/ntd-code-challenge/blob/main/files/ui/home-no-data.png)
+
+### Instructions
+![UI-HomePage](https://github.com/ozzman02/ntd-code-challenge/blob/main/files/ui/instructions.png)
+
+### Generate Mathematical Expression
+![UI-GenMathExp](https://github.com/ozzman02/ntd-code-challenge/blob/main/files/ui/generate-math-exp.png)
+
+### Calculate result
+![UI-Calculate](https://github.com/ozzman02/ntd-code-challenge/blob/main/files/ui/calculate.png)
+
+### Paginated table
+![UI-Pagination](https://github.com/ozzman02/ntd-code-challenge/blob/main/files/ui/pagination-1.png)
+
 # NTD CALCULATOR API
 
-This API has been created following a microservice architecture using Java 17, Maven 3.9.6, Spring Boot 3.3.3, JWT authentication and MySQL database that work in conjunction with Flyway migrations seeds 
+This API has been created following a microservice architecture using Java 17, Maven 3.9.6, Spring Boot 3.3.3, JWT authentication and MySQL database that work in conjunction with Flyway migrations seeds. Mathematical expressions are process with the help of the exp4j library. 
 
 ## Microservices
 
@@ -81,8 +129,29 @@ The swagger ui is available for this service at _http://localhost:8083/swagger-u
 |HTTP Method|Request Mapping|Description|
 |----|----|----|
 |POST|/api/calculator|Process a mathematial expression|
-|GET|/api/calculator/generate|Generates a random mathematical expression from www.random.org|
+|GET|/api/calculator/generate|Generates a random math expression from www.random.org|
 |GET|/api/calculator/records/{id}/page/{page}|Paginated user's record|
+
+## Docker images for services
+The application is using the _Maven Fabric8 Plugin_ to build and push docker images. Images for services can be found according to the table below:
+
+|Service|Path|Image name|
+|ntd-eureka-server|/src/main/docker/|osantamaria/ntd-eureka-server|
+|ntd-api-gateway|/src/main/docker/|osantamaria/ntd-api-gateway|
+|ntd-authorization-service|/src/main/docker/|osantamaria/ntd-authorization-service|
+|ntd-user-service|/src/main/docker/|osantamaria/ntd-user-service|
+|ntd-calculator-service|/src/main/docker/|osantamaria/ntd-calculator-service|
+
+From the root folder of each project run the following command to build the images:
+```sh
+mvn clean compile package docker:build
+```
+
+## Docker compose
+From the ./services folder run:
+```sh
+docker-compose up -d
+```
 
 ## Postman Collection
 The GBH.postman_collection.json file can be found inside the files/postman directory.

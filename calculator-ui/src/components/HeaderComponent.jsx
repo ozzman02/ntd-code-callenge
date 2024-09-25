@@ -58,8 +58,8 @@ export default function HeaderComponent({ username }) {
                   The cost is <b><i>$5</i></b>.
                 </ListGroup.Item>
                 <ListGroup.Item as="li">
-                  You can generate a random math expression using the <b><i>Generate Mathematical Expression </i></b>button. 
-                  This will be an <b><i>Special</i></b> math expression and the cost is <b><i>$10</i></b>. 
+                  If the length of the math exp is &gt;= 100 is an <b><i>Special</i></b> math expression. 
+                  The cost is <b><i>$10</i></b>. 
                 </ListGroup.Item>
                 <ListGroup.Item as="li">
                   If an operation contains unsupported operators or throws an error the result will be an <b><i>Invalid</i></b> math expression. 
