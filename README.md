@@ -160,6 +160,7 @@ The swagger ui is available for this service at _http://localhost:8083/swagger-u
 The application is using the _Maven Fabric8 Plugin_ to build and push docker images. Images for services can be found according to the table below:
 
 |Service|Path|Image name|
+|----|----|----|
 |ntd-eureka-server|/src/main/docker/|osantamaria/ntd-eureka-server|
 |ntd-api-gateway|/src/main/docker/|osantamaria/ntd-api-gateway|
 |ntd-authorization-service|/src/main/docker/|osantamaria/ntd-authorization-service|
